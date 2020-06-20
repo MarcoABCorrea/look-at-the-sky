@@ -1,0 +1,42 @@
+@import 'src/styles/mixins.scss';
+
+#header {
+  display: flex;
+
+  .mat-toolbar {
+    display: flex;
+    align-items: baseline;
+    margin: auto;
+    margin-top: 2%;
+    border-bottom: 2px solid #f0eeeb;
+    border-width: medium;
+    background: none;
+    width: 100%;
+
+    @include breakpoint('laptop') {
+      padding-bottom: 5rem;
+    }
+
+    img {
+      max-width: 6.75rem;
+      width: 6.75rem;
+      height: 2.625rem;
+    }
+
+    .slogan {
+      color: #5a5a5a;
+      padding: 0 0.875rem;
+      letter-spacing: 1px;
+      font-size: 13px;
+      font-weight: bold;
+
+      @include breakpoint('laptop') {
+        display: block;
+      }
+    }
+
+    .red {
+      color: #e2001a;
+    }
+  }
+}

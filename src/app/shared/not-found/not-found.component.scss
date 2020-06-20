@@ -1,0 +1,35 @@
+@import 'src/styles/mixins.scss';
+
+#not-found {
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+
+  .icon {
+    display: flex;
+    margin: auto auto 0;
+
+    i {
+      font-size: 2em;
+      color: #e2001a;
+    }
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-bottom: 1.0625rem;
+
+    @include breakpoint('<tablet') {
+      font-size: 1.625rem;
+      margin-bottom: 3.25rem;
+    }
+  }
+
+  h1 {
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 1.5rem;
+  }
+}
