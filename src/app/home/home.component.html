@@ -1,49 +1,6 @@
 <div id="home">
-  <h1 class="headline">Look at the Sky</h1>
-
-  <div class="info" *ngIf="show">
-    <section class="country">
-      <span class="flag-icon" [ngClass]="flag"></span>
-      <span>{{ country }}</span>
-    </section>
-    <section class="temperature">
-      <ul>
-        <li>city: {{ current.city }}</li>
-        <li>latitude: {{ current.lat }}</li>
-        <li>longitude: {{ current.lon }}</li>
-        <li>
-          Weather: {{ current.description }}
-
-          <img
-            [src]="current.icon"
-            alt="Place image title"
-            style="width: 5em;"
-            *ngIf="!isImageLoading; else noImageFound"
-          />
-          <ng-template #noImageFound>
-            <i class="fas fa-rainbow"></i>
-          </ng-template>
-        </li>
-        <li>
-          humidity: {{ current.humidity }}% <i class="fas fa-umbrella"></i>
-        </li>
-        <li>
-          temperature: {{ current.temperature }} º C
-          <i class="fas fa-temperature-low" *ngIf="current.temperature < 10"></i
-          ><i
-            class="fas fa-temperature-high"
-            *ngIf="current.temperature >= 10"
-          ></i>
-        </li>
-        <li>
-          wind speed: {{ current.windSpeed }} KM/H
-          <i class="fas fa-wind"></i>
-        </li>
-      </ul>
-    </section>
-  </div>
-
-  <button (click)="randomCoordinates()" mat-raised-button color="primary">
+  <button (click)="randomWeather()" mat-raised-button color="primary">
     Random Coordinates
   </button>
+  <widget></widget>
 </div>

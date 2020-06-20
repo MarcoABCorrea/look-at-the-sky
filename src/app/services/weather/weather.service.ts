@@ -10,8 +10,6 @@ import { Params } from './shared/Parameters.model';
 })
 export class WeatherService {
   private basePath: string = environment.BASE_URL;
-  private iconPath: string = environment.ICON_URL;
-  private iconAppend: string = environment.ICON_APPEND;
 
   constructor(private http: HttpClient) {}
 
@@ -21,12 +19,6 @@ export class WeatherService {
   ): Observable<GetWeatherResponse> {
     return this.http.get<GetWeatherResponse>(this.basePath, {
       params: this.buildParams(lat, lon)
-    });
-  }
-
-  public getIcon(iconId: string): Observable<Blob> {
-    return this.http.get(this.basePath + iconId + '@2x.png', {
-      responseType: 'blob'
     });
   }
 

@@ -1,0 +1,61 @@
+<div class="teaser-card" *ngIf="data">
+  <div class="teaser-card__inner">
+    <div class="teaser-card__content">
+      <div class="teaser-card__content-inner">
+        <div class="date">
+          {{ date }}
+        </div>
+        <div class="teaser-card__container">
+          <div class="teaser-card__text">
+            <div class="city">
+              {{ data.city }}
+            </div>
+            <div class="temp">
+              <img
+                [src]="icon"
+                alt="Weather icon"
+                *ngIf="!isImageLoading; else noImageFound"
+              />
+              <ng-template #noImageFound>
+                <i class="fas fa-rainbow"></i>
+              </ng-template>
+              <span
+                >{{ data.temperature }} &deg;
+                <i
+                  class="fas fa-temperature-low"
+                  *ngIf="data.temperature < 10"
+                ></i
+                ><i
+                  class="fas fa-temperature-high"
+                  *ngIf="data.temperature >= 10"
+                ></i
+              ></span>
+            </div>
+            <section class="temperature">
+              <ul>
+                <li>city: {{ data.city }}</li>
+                <li>latitude: {{ data.lat }}</li>
+                <li>longitude: {{ data.lon }}</li>
+                <li>Weather: {{ data.description }}</li>
+                <li>
+                  humidity: {{ data.humidity }}%
+                  <i class="fas fa-umbrella"></i>
+                </li>
+                <li>
+                  wind speed: {{ data.windSpeed }} KM/H
+                  <i class="fas fa-wind"></i>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="teaser-card__image">
+      <div class="teaser-card__image-inner">
+        <span class="flag-icon" [ngClass]="flag"></span>
+        <p>{{ country }}</p>
+      </div>
+    </div>
+  </div>
+</div>

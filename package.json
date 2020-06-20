@@ -4,7 +4,7 @@
   "author": "marco",
   "scripts": {
     "ng": "ng",
-    "start": "start compodoc -w -p tsconfig.json -s -r 7999 & ng serve",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,6 +26,7 @@
     "@angular/router": "^9.1.6",
     "core-js": "^2.6.11",
     "js-base64": "^2.5.2",
+    "moment": "^2.27.0",
     "rxjs": "^6.5.5",
     "zone.js": "~0.10.3"
   },

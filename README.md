@@ -1,4 +1,4 @@
-w# Look at the Sky
+# Look at the Sky
 
 ## Description
 
@@ -7,12 +7,15 @@ The purpose of this project is to have a Weathermap api client
 ## Features
 
 - Weather information for random city
+- Circular search until finds a valid city
+- Time in current zone
 
 ## Tech Stack
 
 - Angular 9
 - Angular Material
 - Font Awesome
+- Moment
 - [Open Weather Map API](http://openweathermap.org/API#weather)
 
 ## Setting up the project
@@ -41,6 +44,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+Opitionaly you can run `ng test --code-coverage` in order to generate visual information about code coverage.
 
 ## Running end-to-end tests
 
