@@ -63,3 +63,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 - Add more weather options (E.g next hours, next days)
 - Current time is static
 - improve documentation (Compodoc)
+
+## Screenshots
+
+<img  width="500" height="300" src="Screenshot_1.jpg">
+<img  width="500" height="300" src="Screenshot_2.jpg">
+<img  width="500" height="300" src="Screenshot_3.jpg">
