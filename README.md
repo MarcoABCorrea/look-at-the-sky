@@ -7,10 +7,9 @@ The purpose of this project is to have a Weathermap api client
 ## Features
 
 - Weather information for random city
-- Random Circular search until finds a valid city
-- Time in current zone
+- Circular search until finds a valid city
 - Search by Country/City
-- Cach strategy for previous weathers
+- Cache strategy for previous searches
 
 ## Tech Stack
 
@@ -19,6 +18,7 @@ The purpose of this project is to have a Weathermap api client
 - Font Awesome
 - Moment
 - [Open Weather Map API](http://openweathermap.org/API#weather)
+- [Flag icon CSS](https://github.com/lipis/flag-icon-css)
 
 ## Setting up the project
 
@@ -37,7 +37,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Automatic Documentation
 
-Run `npm run compodoc` to create or renew the documentation. To get a local view you can also open an http-server via compodoc itself, using `npm run compodoc-serve`, which will be available under `http://localhost:8080/`.
+Run `npm run compodoc` to create or renew the documentation. It also opens an http-server via compodoc itself, which will be available under `http://localhost:8080/`.
 
 ## Build
 

@@ -1,7 +1,10 @@
 {
   "name": "look-at-the-sky",
   "version": "1.0.0",
-  "author": "marco",
+  "license": "MIT",
+  "description": "Weathermap api client",
+  "author": "Marco Aurélio Batista Corrêa",
+  "email": "marcoabcorrea@gmail.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
