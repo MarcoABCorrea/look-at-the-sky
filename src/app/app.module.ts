@@ -4,8 +4,11 @@ import {
   NgModule,
   NO_ERRORS_SCHEMA
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,7 +21,6 @@ import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.compone
 import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { WidgetComponent } from './widget/widget.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,9 @@ import { WidgetComponent } from './widget/widget.component';
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
     HttpClientModule

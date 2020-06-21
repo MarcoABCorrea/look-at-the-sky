@@ -11,10 +11,6 @@
     background: none;
     width: 100%;
 
-    @include breakpoint('laptop') {
-      padding-bottom: 5rem;
-    }
-
     img {
       max-width: 6.75rem;
       width: 6.75rem;

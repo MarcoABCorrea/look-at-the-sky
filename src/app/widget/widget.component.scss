@@ -1,24 +1,21 @@
 @import 'src/styles/mixins.scss';
 
-.teaser-card {
+.widget {
   position: relative;
-  // width: 355px;
-  // height: 125px;
   margin: 150px auto;
-  // background-color: #fcfdfd;
   background-color: #d9d9d9;
   border-radius: 9px;
   padding: 25px;
   padding-right: 30px;
   box-shadow: 0px 31px 35px -26px #080c21;
 
-  .teaser-card__inner {
+  .widget__inner {
     position: relative;
     overflow: hidden;
     height: 100%;
   }
 
-  .teaser-card__image {
+  .widget__country {
     position: absolute;
     top: 0;
     right: 0;
@@ -32,24 +29,24 @@
     }
   }
 
-  .teaser-card__content-inner,
-  .teaser-card__image-inner {
+  .widget__content-inner,
+  .widget__country-inner {
     padding: 1.875rem 2rem 3.75rem;
   }
 
-  .teaser-card__content {
+  .widget__content {
     padding-left: 0;
     float: left;
 
-    .teaser-card__content-inner {
-      .teaser-card__container {
+    .widget__content-inner {
+      .widget__container {
         margin: 1em 0;
       }
 
       .date {
         font-size: 14px;
         font-weight: bold;
-        color: rgba(0, 0, 0, 0.5);
+        color: #062fc780;
       }
 
       .city {
@@ -58,6 +55,13 @@
         text-transform: uppercase;
         padding-top: 5px;
         color: rgba(0, 0, 0, 0.7);
+
+        p {
+          margin: 0;
+          font-size: 12px;
+          color: #2d2c2c80;
+          text-transform: lowercase;
+        }
       }
 
       .temp {
@@ -78,6 +82,10 @@
           right: auto;
         }
 
+        .fas {
+          font-size: 0.6em;
+        }
+
         .fa-temperature-low {
           color: #2108aa;
         }
@@ -86,10 +94,19 @@
           color: #f26e20;
         }
       }
+
+      .fa-umbrella {
+        color: #017eff;
+      }
+
+      .description p {
+        margin: 0;
+        text-transform: capitalize;
+      }
     }
   }
 
-  .teaser-card__image-inner {
+  .widget__country-inner {
     text-align: center;
 
     .flag-icon {
@@ -103,8 +120,8 @@
     }
   }
 
-  .teaser-card__image,
-  .teaser-card__content {
+  .widget__country,
+  .widget__content {
     @include breakpoint('<tablet') {
       float: unset;
       width: 100%;

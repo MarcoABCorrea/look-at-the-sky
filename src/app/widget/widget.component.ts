@@ -32,16 +32,13 @@ export class WidgetComponent implements OnInit {
     this.country = this.countries[widget.countryId];
     this.flag = this.prefix + widget.countryId.toLocaleLowerCase();
 
-    let iconName = widget.icon; //res.weather[0].icon
+    let iconName = widget.icon;
     this.iconService.getIcon(iconName).subscribe(
       (data: any) => {
         this.createImageFromBlob(data);
-        this.isImageLoading = false;
       },
-      (error) => {
-        this.isImageLoading = false;
-        console.log(error);
-      }
+      null,
+      () => (this.isImageLoading = false)
     );
   }
 

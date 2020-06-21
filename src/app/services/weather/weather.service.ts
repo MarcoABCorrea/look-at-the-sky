@@ -13,18 +13,29 @@ export class WeatherService {
 
   constructor(private http: HttpClient) {}
 
+  public getWithLocation(
+    country: string,
+    city: string
+  ): Observable<GetWeatherResponse> {
+    const params = new Params().withCountry(country).withCity(city);
+
+    return this.http.get<GetWeatherResponse>(this.basePath, {
+      params: this.appendParams(params)
+    });
+  }
+
   public getWithLatLon(
     lat: string,
     lon: string
   ): Observable<GetWeatherResponse> {
+    const params = new Params().withLat(lat).withLon(lon);
+
     return this.http.get<GetWeatherResponse>(this.basePath, {
-      params: this.buildParams(lat, lon)
+      params: this.appendParams(params)
     });
   }
 
-  private buildParams(lat: string, lon: string): HttpParams {
-    let params = new Params().withLat(lat).withLon(lon);
-
+  private appendParams(params: Params): HttpParams {
     let httpParams = new HttpParams();
     Object.keys(params).forEach((key) => {
       httpParams = httpParams.append(key, params[key]);

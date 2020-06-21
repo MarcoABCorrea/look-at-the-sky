@@ -1,6 +1,46 @@
 <div id="home">
-  <button (click)="randomWeather()" mat-raised-button color="primary">
-    Random Coordinates
-  </button>
+  <span class="bold"
+    >Search bellow for the city you want to see the weather</span
+  >
+
+  <form class="search-form">
+    <mat-form-field>
+      <mat-label>Country</mat-label>
+      <input
+        matInput
+        name="country"
+        placeholder="Ex. Germany"
+        [(ngModel)]="country"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input
+        matInput
+        name="city"
+        placeholder="Ex. Berlin"
+        required
+        [(ngModel)]="city"
+      />
+    </mat-form-field>
+
+    <button (click)="search($event)" mat-raised-button type="button">
+      Search
+      <mat-icon>
+        <i class="fas fa-search-location"></i>
+      </mat-icon>
+    </button>
+  </form>
+
+  <div class="random">
+    <span class="bold">or just search for a random city here!</span>
+    <button (click)="randomWeather()" mat-raised-button>
+      Random City
+      <mat-icon>
+        <i class="fas fa-random"></i>
+      </mat-icon>
+    </button>
+  </div>
   <widget></widget>
 </div>

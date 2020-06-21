@@ -10,8 +10,6 @@ import { Lon } from '../shared/Longitude.enum';
 import { WidgetComponent } from '../widget/widget.component';
 import { Widget } from '../widget/widget.model';
 
-const countries = require('@mockData/CountriesISO.json');
-
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -20,6 +18,8 @@ const countries = require('@mockData/CountriesISO.json');
 export class HomeComponent implements OnInit {
   @ViewChild(WidgetComponent)
   private widgetChild: WidgetComponent;
+  country: string;
+  city: string;
 
   constructor(
     private dialog: MatDialog,
@@ -28,22 +28,38 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  search(event: any) {
+    event.stopPropagation();
+    console.log(this.country, this.city);
+
+    this.getWeatherWithLocation(this.country, this.city).subscribe(
+      (res: GetWeatherResponse) => {
+        const widget = this.buildWidgetObject(res);
+        this.widgetChild.updateData(widget);
+      },
+      () => this.showError()
+    );
+  }
+
+  buildWidgetObject(res: GetWeatherResponse): Widget {
+    return {
+      city: res.name,
+      countryId: res.sys.country,
+      temperature: res.main.temp,
+      lat: res.coord.lat,
+      lon: res.coord.lon,
+      description: res.weather[0].description,
+      humidity: res.main.humidity,
+      windSpeed: this.convertMPSToKMH(res.wind.speed),
+      timezone: res.timezone,
+      icon: res.weather[0].icon
+    };
+  }
+
   randomWeather() {
     this.findRandomCity().subscribe(
       (res: GetWeatherResponse) => {
-        const widget: Widget = {
-          city: res.name,
-          countryId: res.sys.country,
-          temperature: res.main.temp,
-          lat: res.coord.lat,
-          lon: res.coord.lon,
-          description: res.weather[0].description,
-          humidity: res.main.humidity,
-          windSpeed: this.convertMPSToKMH(res.wind.speed),
-          timezone: res.timezone,
-          icon: res.weather[0].icon
-        };
-
+        const widget = this.buildWidgetObject(res);
         this.widgetChild.updateData(widget);
       },
       () => this.showError()
@@ -63,6 +79,10 @@ export class HomeComponent implements OnInit {
       }),
       catchError(() => this.findRandomCity())
     );
+  }
+
+  getWeatherWithLocation(country: string, city: string) {
+    return this.weatherService.getWithLocation(country, city);
   }
 
   getWeather(): Observable<GetWeatherResponse> {

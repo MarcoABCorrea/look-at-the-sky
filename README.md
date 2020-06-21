@@ -7,8 +7,9 @@ The purpose of this project is to have a Weathermap api client
 ## Features
 
 - Weather information for random city
-- Circular search until finds a valid city
+- Random Circular search until finds a valid city
 - Time in current zone
+- Search by Country/City
 
 ## Tech Stack
 
@@ -53,4 +54,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## TODO list
 
--
+- Use angular's form validator
+- Better validate Country/City inputs
+- Improve responsiveness and overall layout
+- More e2e tests
+- More validation against Open Weather API (Integration tests)
+- Add more weather options (E.g next hours, next days)
+- Current time is static
+- improve documentation (Compodoc)

@@ -1,14 +1,15 @@
-<div class="teaser-card" *ngIf="data">
-  <div class="teaser-card__inner">
-    <div class="teaser-card__content">
-      <div class="teaser-card__content-inner">
+<div class="widget" *ngIf="data">
+  <div class="widget__inner">
+    <div class="widget__content">
+      <div class="widget__content-inner">
         <div class="date">
           {{ date }}
         </div>
-        <div class="teaser-card__container">
-          <div class="teaser-card__text">
+        <div class="widget__container">
+          <div class="widget__text">
             <div class="city">
-              {{ data.city }}
+              <span>{{ data.city }}</span>
+              <p>lat/lon: {{ data.lat }}/{{ data.lon }}</p>
             </div>
             <div class="temp">
               <img
@@ -31,28 +32,24 @@
                 ></i
               ></span>
             </div>
-            <section class="temperature">
-              <ul>
-                <li>city: {{ data.city }}</li>
-                <li>latitude: {{ data.lat }}</li>
-                <li>longitude: {{ data.lon }}</li>
-                <li>Weather: {{ data.description }}</li>
-                <li>
-                  humidity: {{ data.humidity }}%
-                  <i class="fas fa-umbrella"></i>
-                </li>
-                <li>
-                  wind speed: {{ data.windSpeed }} KM/H
-                  <i class="fas fa-wind"></i>
-                </li>
-              </ul>
+            <section class="description">
+              <p>
+                {{ data.description }}
+              </p>
+              <p>
+                humidity: {{ data.humidity }}% <i class="fas fa-umbrella"></i>
+              </p>
+              <p>
+                wind speed: {{ data.windSpeed }} KM/H
+                <i class="fas fa-wind"></i>
+              </p>
             </section>
           </div>
         </div>
       </div>
     </div>
-    <div class="teaser-card__image">
-      <div class="teaser-card__image-inner">
+    <div class="widget__country">
+      <div class="widget__country-inner">
         <span class="flag-icon" [ngClass]="flag"></span>
         <p>{{ country }}</p>
       </div>
