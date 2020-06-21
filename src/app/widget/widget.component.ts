@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconService } from '@services/icon/icon.service';
+import { WeatherIconService } from '@services/weatherIcon/weather-icon.service';
 import * as moment from 'moment';
 import { Widget } from './widget.model';
 
@@ -19,7 +19,7 @@ export class WidgetComponent implements OnInit {
   data: Widget;
 
   private static DATE_FORMAT = 'dddd, MMMM DD, LT';
-  constructor(private iconService: IconService) {}
+  constructor(private weatherIconService: WeatherIconService) {}
 
   ngOnInit(): void {}
 
@@ -33,8 +33,8 @@ export class WidgetComponent implements OnInit {
     this.flag = this.prefix + widget.countryId.toLocaleLowerCase();
 
     let iconName = widget.icon;
-    this.iconService.getIcon(iconName).subscribe(
-      (data: any) => {
+    this.weatherIconService.getIcon(iconName).subscribe(
+      (data: Blob) => {
         this.createImageFromBlob(data);
       },
       null,

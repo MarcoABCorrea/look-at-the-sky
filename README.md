@@ -10,6 +10,7 @@ The purpose of this project is to have a Weathermap api client
 - Random Circular search until finds a valid city
 - Time in current zone
 - Search by Country/City
+- Cach strategy for previous weathers
 
 ## Tech Stack
 

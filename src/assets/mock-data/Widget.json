@@ -1,0 +1,12 @@
+{
+  "city": "Berlin",
+  "countryId": "DE",
+  "temperature": 10,
+  "lat": 123,
+  "lon": 456,
+  "description": "Cloudy",
+  "humidity": 20,
+  "windSpeed": "10",
+  "timezone": 7200,
+  "icon": "10d"
+}

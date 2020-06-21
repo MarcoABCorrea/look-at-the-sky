@@ -1,5 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { StorageService } from '@services/storage/storage.service';
 import { GetWeatherResponse } from '@services/weather/shared/GetWeatherResponse.model';
 import { WeatherService } from '@services/weather/weather.service';
 import { Observable, throwError } from 'rxjs';
@@ -15,27 +22,51 @@ import { Widget } from '../widget/widget.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(WidgetComponent)
   private widgetChild: WidgetComponent;
   country: string;
   city: string;
+  showLoading: boolean = false;
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {}
 
+  ngAfterViewInit(): void {
+    const widget = this.storageService.loadWeather();
+    this.updateData(widget);
+    this.cdr.detectChanges(); // Prevent error due child view update
+  }
+
   search(event: any) {
     event.stopPropagation();
-    console.log(this.country, this.city);
 
-    this.getWeatherWithLocation(this.country, this.city).subscribe(
+    if (this.city) {
+      this.showLoading = true;
+      this.getWeatherWithLocation(this.country, this.city).subscribe(
+        (res: GetWeatherResponse) => {
+          this.showLoading = false;
+          const widget = this.buildWidgetObject(res);
+          this.updateData(widget);
+        },
+        () => this.showError()
+      );
+    }
+  }
+
+  randomWeather() {
+    this.showLoading = true;
+    this.findRandomCity().subscribe(
       (res: GetWeatherResponse) => {
+        this.showLoading = false;
         const widget = this.buildWidgetObject(res);
-        this.widgetChild.updateData(widget);
+        this.updateData(widget);
       },
       () => this.showError()
     );
@@ -56,14 +87,9 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  randomWeather() {
-    this.findRandomCity().subscribe(
-      (res: GetWeatherResponse) => {
-        const widget = this.buildWidgetObject(res);
-        this.widgetChild.updateData(widget);
-      },
-      () => this.showError()
-    );
+  updateData(widget: Widget) {
+    this.storageService.saveWeather(widget);
+    this.widgetChild.updateData(widget);
   }
 
   /**
@@ -101,6 +127,7 @@ export class HomeComponent implements OnInit {
   }
 
   showError(): void {
+    this.showLoading = false;
     this.dialog.open(ErrorDialogComponent, {
       data: { message: 'Error connecting to the servers!' }
     });

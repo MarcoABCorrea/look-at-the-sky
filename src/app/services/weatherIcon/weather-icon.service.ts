@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class IconService {
+export class WeatherIconService {
   private iconPath: string = environment.ICON_URL;
   private iconAppend: string = environment.ICON_APPEND;
 

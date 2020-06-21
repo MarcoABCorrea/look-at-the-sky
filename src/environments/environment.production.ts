@@ -6,5 +6,11 @@
 export const environment = {
   production: true,
 
-  API_KEY: "<API_KEY>",
+  API_KEY: '<API_KEY>',
+
+  BASE_URL: '<BASE_URL>',
+
+  ICON_URL: '<ICON_URL>',
+
+  ICON_APPEND: '<ICON_APPEND>'
 };

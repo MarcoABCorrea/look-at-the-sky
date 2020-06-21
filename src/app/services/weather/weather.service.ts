@@ -35,7 +35,7 @@ export class WeatherService {
     });
   }
 
-  private appendParams(params: Params): HttpParams {
+  appendParams(params: Params): HttpParams {
     let httpParams = new HttpParams();
     Object.keys(params).forEach((key) => {
       httpParams = httpParams.append(key, params[key]);

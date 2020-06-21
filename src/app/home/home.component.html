@@ -42,5 +42,7 @@
       </mat-icon>
     </button>
   </div>
-  <widget></widget>
+
+  <mat-spinner *ngIf="showLoading"></mat-spinner>
+  <widget [style.visibility]="!showLoading ? 'visible' : 'hidden'"></widget>
 </div>
