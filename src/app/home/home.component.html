@@ -2,7 +2,6 @@
   <span class="bold"
     >Search bellow for the city you want to see the weather</span
   >
-
   <form class="search-form">
     <mat-form-field>
       <mat-label>Country</mat-label>
@@ -44,5 +43,8 @@
   </div>
 
   <mat-spinner *ngIf="showLoading"></mat-spinner>
-  <widget [style.visibility]="!showLoading ? 'visible' : 'hidden'"></widget>
+  <widget
+    [style.visibility]="!showLoading ? 'visible' : 'hidden'"
+    [data]="widgetData"
+  ></widget>
 </div>

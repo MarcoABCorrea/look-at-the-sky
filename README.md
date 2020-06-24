@@ -66,6 +66,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Screenshots
 
-<img  width="500" height="300" src="Screenshot_1.jpg">
-<img  width="500" height="300" src="Screenshot_2.jpg">
-<img  width="500" height="300" src="Screenshot_3.jpg">
+<img  width="500" height="300" src="screenshots/Screenshot_1.jpg">
+<img  width="500" height="300" src="screenshots/Screenshot_2.jpg">
+<img  width="500" height="300" src="screenshots/Screenshot_3.jpg">

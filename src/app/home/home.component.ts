@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from '@services/storage/storage.service';
 import { GetWeatherResponse } from '@services/weather/shared/GetWeatherResponse.model';
@@ -14,37 +8,31 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { Lat } from '../shared/Latitude.enum';
 import { Lon } from '../shared/Longitude.enum';
-import { WidgetComponent } from '../widget/widget.component';
 import { Widget } from '../widget/widget.model';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
-  @ViewChild(WidgetComponent)
-  private widgetChild: WidgetComponent;
+export class HomeComponent implements OnInit {
+  static maxTries: number = 5;
   country: string;
   city: string;
   showLoading: boolean = false;
+  widgetData: Widget;
 
   constructor(
-    private cdr: ChangeDetectorRef,
     private dialog: MatDialog,
     private weatherService: WeatherService,
-    private storageService: StorageService
+    private storageService: StorageService,
   ) {}
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    const widget = this.storageService.loadWeather();
-    this.updateData(widget);
-    this.cdr.detectChanges(); // Prevent error due child view update
+  ngOnInit(): void {
+    this.widgetData = this.storageService.loadWeather();
   }
 
-  search(event: any) {
+  search(event: any): void {
     event.stopPropagation();
 
     if (this.city) {
@@ -55,12 +43,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
           const widget = this.buildWidgetObject(res);
           this.updateData(widget);
         },
-        () => this.showError()
+        () => this.showError(),
       );
     }
   }
 
-  randomWeather() {
+  randomWeather(): void {
     this.showLoading = true;
     this.findRandomCity().subscribe(
       (res: GetWeatherResponse) => {
@@ -68,7 +56,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
         const widget = this.buildWidgetObject(res);
         this.updateData(widget);
       },
-      () => this.showError()
+      (message) => {
+        message.subscribe(null, (error) => this.showError(error)); // TODO why is it being returned an Observable
+      },
     );
   }
 
@@ -83,31 +73,43 @@ export class HomeComponent implements OnInit, AfterViewInit {
       humidity: res.main.humidity,
       windSpeed: this.convertMPSToKMH(res.wind.speed),
       timezone: res.timezone,
-      icon: res.weather[0].icon
+      icon: res.weather[0].icon,
     };
   }
 
-  updateData(widget: Widget) {
+  updateData(widget: Widget): void {
     this.storageService.saveWeather(widget);
-    this.widgetChild.updateData(widget);
+    this.widgetData = widget;
   }
 
   /**
    * Keep trying until finds a valid city
+   * maxTries default 5
    */
-  findRandomCity() {
+  findRandomCity(maxTries: number = 0): any {
     return this.getWeather().pipe(
       map((weather) => {
         if (weather.name === '') {
-          throw throwError(weather);
+          throw throwError(null);
         }
         return weather;
       }),
-      catchError(() => this.findRandomCity())
+      catchError(() => {
+        maxTries++;
+        if (maxTries === HomeComponent.maxTries) {
+          throw throwError(
+            `Number of tries exceeded! ${HomeComponent.maxTries} times`,
+          );
+        }
+        return this.findRandomCity(maxTries);
+      }),
     );
   }
 
-  getWeatherWithLocation(country: string, city: string) {
+  getWeatherWithLocation(
+    country: string,
+    city: string,
+  ): Observable<GetWeatherResponse> {
     return this.weatherService.getWithLocation(country, city);
   }
 
@@ -118,7 +120,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return this.weatherService.getWithLatLon(latitude, longitude);
   }
 
-  getRandomCoordinate(from: number, to: number) {
+  getRandomCoordinate(from: number, to: number): string {
     return (Math.random() * (to - from) + from).toFixed(3);
   }
 
@@ -126,10 +128,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return ((mps / 1000) * 3600).toFixed(1);
   }
 
-  showError(): void {
+  showError(message: string = 'Error connecting to the servers!'): void {
     this.showLoading = false;
     this.dialog.open(ErrorDialogComponent, {
-      data: { message: 'Error connecting to the servers!' }
+      data: { message },
     });
   }
 }

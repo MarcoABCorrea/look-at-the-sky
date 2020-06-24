@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { WeatherIconService } from '@services/weatherIcon/weather-icon.service';
 import * as moment from 'moment';
 import { Widget } from './widget.model';
@@ -6,9 +6,9 @@ import { Widget } from './widget.model';
 @Component({
   selector: 'widget',
   templateUrl: './widget.component.html',
-  styleUrls: ['./widget.component.scss']
+  styleUrls: ['./widget.component.scss'],
 })
-export class WidgetComponent implements OnInit {
+export class WidgetComponent implements OnChanges {
   countries = require('@mockData/CountriesISO.json');
   isImageLoading: boolean = true;
   prefix: string = 'flag-icon-';
@@ -16,12 +16,16 @@ export class WidgetComponent implements OnInit {
   flag: string;
   date: string;
   icon: any;
+
+  @Input()
   data: Widget;
 
   private static DATE_FORMAT = 'dddd, MMMM DD, LT';
   constructor(private weatherIconService: WeatherIconService) {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateData(changes.data.currentValue);
+  }
 
   updateData(widget: Widget) {
     this.data = widget;
@@ -32,24 +36,24 @@ export class WidgetComponent implements OnInit {
     this.country = this.countries[widget.countryId];
     this.flag = this.prefix + widget.countryId.toLocaleLowerCase();
 
-    let iconName = widget.icon;
+    const iconName = widget.icon;
     this.weatherIconService.getIcon(iconName).subscribe(
       (data: Blob) => {
         this.createImageFromBlob(data);
       },
       null,
-      () => (this.isImageLoading = false)
+      () => (this.isImageLoading = false),
     );
   }
 
   createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.addEventListener(
       'load',
       () => {
         this.icon = reader.result;
       },
-      false
+      false,
     );
 
     if (image) {
