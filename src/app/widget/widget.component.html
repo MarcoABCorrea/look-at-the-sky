@@ -48,11 +48,6 @@
         </div>
       </div>
     </div>
-    <div class="widget__country">
-      <div class="widget__country-inner">
-        <span class="flag-icon" [ngClass]="flag"></span>
-        <p>{{ country }}</p>
-      </div>
-    </div>
+    <country-flag [countryId]="data.countryId"></country-flag>
   </div>
 </div>

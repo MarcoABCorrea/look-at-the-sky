@@ -2,7 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   NgModule,
-  NO_ERRORS_SCHEMA
+  NO_ERRORS_SCHEMA,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { CountryFlagComponent } from './widget/country/country-flag/country-flag.component';
+import { CountryNamePipe } from './widget/country/country-name.pipe';
 import { WidgetComponent } from './widget/widget.component';
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { WidgetComponent } from './widget/widget.component';
     HeaderComponent,
     NotFoundComponent,
     ErrorDialogComponent,
-    WidgetComponent
+    WidgetComponent,
+    CountryFlagComponent,
+    CountryNamePipe,
   ],
   imports: [
     AppRoutingModule,
@@ -41,17 +45,17 @@ import { WidgetComponent } from './widget/widget.component';
     FormsModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     HttpClientModule,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: WeatherInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

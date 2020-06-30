@@ -9,11 +9,7 @@ import { Widget } from './widget.model';
   styleUrls: ['./widget.component.scss'],
 })
 export class WidgetComponent implements OnChanges {
-  countries = require('@mockData/CountriesISO.json');
   isImageLoading: boolean = true;
-  prefix: string = 'flag-icon-';
-  country: string;
-  flag: string;
   date: string;
   icon: any;
 
@@ -33,11 +29,7 @@ export class WidgetComponent implements OnChanges {
       .utcOffset(widget.timezone / 60)
       .format(WidgetComponent.DATE_FORMAT);
 
-    this.country = this.countries[widget.countryId];
-    this.flag = this.prefix + widget.countryId.toLocaleLowerCase();
-
-    const iconName = widget.icon;
-    this.weatherIconService.getIcon(iconName).subscribe(
+    this.weatherIconService.getIcon(widget.icon).subscribe(
       (data: Blob) => {
         this.createImageFromBlob(data);
       },

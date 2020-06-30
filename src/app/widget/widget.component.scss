@@ -15,22 +15,7 @@
     height: 100%;
   }
 
-  .widget__country {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: auto;
-    height: 100%;
-    float: right;
-
-    @include breakpoint('<tablet') {
-      position: relative;
-    }
-  }
-
-  .widget__content-inner,
-  .widget__country-inner {
+  .widget__content-inner {
     padding: 1.875rem 2rem 3.75rem;
   }
 
@@ -106,21 +91,6 @@
     }
   }
 
-  .widget__country-inner {
-    text-align: center;
-
-    .flag-icon {
-      width: 4em;
-      height: 3em;
-    }
-
-    p {
-      margin: 0;
-      font-weight: 700;
-    }
-  }
-
-  .widget__country,
   .widget__content {
     @include breakpoint('<tablet') {
       float: unset;

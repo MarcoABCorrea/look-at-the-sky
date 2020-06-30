@@ -1,0 +1,9 @@
+<div class="country-flag-component">
+  <div class="country-flag-inner">
+    <span
+      class="flag-icon"
+      [ngClass]="'flag-icon-' + countryId | lowercase"
+    ></span>
+    <p>{{ countryId | countryName }}</p>
+  </div>
+</div>

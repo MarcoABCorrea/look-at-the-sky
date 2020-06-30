@@ -1,0 +1,36 @@
+@import 'src/styles/mixins.scss';
+
+.country-flag-component {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  height: 100%;
+  float: right;
+
+  @include breakpoint('<tablet') {
+    position: relative;
+    float: unset;
+    width: 100%;
+  }
+
+  @include breakpoint('tablet') {
+    width: 50%;
+  }
+
+  .country-flag-inner {
+    text-align: center;
+    padding: 1.875rem 2rem 3.75rem;
+
+    .flag-icon {
+      width: 4em;
+      height: 3em;
+    }
+
+    p {
+      margin: 0;
+      font-weight: 700;
+    }
+  }
+}
