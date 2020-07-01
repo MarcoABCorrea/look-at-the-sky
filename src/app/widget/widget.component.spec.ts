@@ -19,10 +19,10 @@ describe('WidgetComponent', () => {
         {
           provide: WeatherIconService,
           useValue: {
-            getIcon: () => of()
-          }
-        }
-      ]
+            getIcon: () => of(),
+          },
+        },
+      ],
     }).compileComponents();
   }));
 

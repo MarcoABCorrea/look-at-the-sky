@@ -22,6 +22,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { CountryFlagComponent } from './widget/country/country-flag/country-flag.component';
 import { CountryNamePipe } from './widget/country/country-name.pipe';
+import { CurrentDateComponent } from './widget/current-date/current-date.component';
 import { WidgetComponent } from './widget/widget.component';
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { WidgetComponent } from './widget/widget.component';
     WidgetComponent,
     CountryFlagComponent,
     CountryNamePipe,
+    CurrentDateComponent,
   ],
   imports: [
     AppRoutingModule,

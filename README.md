@@ -61,7 +61,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 - More e2e tests
 - More validation against Open Weather API (Integration tests)
 - Add more weather options (E.g next hours, next days)
-- Current time is static
 - improve documentation (Compodoc)
 
 ## Screenshots

@@ -16,7 +16,7 @@ import { Widget } from '../widget/widget.model';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  static maxTries: number = 5;
+  static maxTries: number = 10;
   country: string;
   city: string;
   showLoading: boolean = false;
