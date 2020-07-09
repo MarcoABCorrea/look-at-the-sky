@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 import { ErrorDialogComponent } from '../shared/error-dialog/error-dialog.component';
 import { Lat } from '../shared/Latitude.enum';
 import { Lon } from '../shared/Longitude.enum';
-import { Widget } from '../widget/widget.model';
+import { Widget } from '../widget/Widget.model';
 
 @Component({
   selector: 'home',

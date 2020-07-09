@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { WeatherIconService } from '@services/weatherIcon/weather-icon.service';
-import { Widget } from './widget.model';
+import { Widget } from './Widget.model';
 
 @Component({
   selector: 'widget',

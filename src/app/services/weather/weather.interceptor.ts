@@ -2,12 +2,12 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@envs/environment';
 import { Observable } from 'rxjs';
-import { Units } from './shared/units.enum';
+import { Units } from './shared/Units.enum';
 
 @Injectable()
 export class WeatherInterceptor implements HttpInterceptor {
@@ -19,7 +19,7 @@ export class WeatherInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     if (request.url.indexOf(environment.BASE_URL) === -1) {
       return next.handle(request);
@@ -27,7 +27,7 @@ export class WeatherInterceptor implements HttpInterceptor {
     const req = request.clone({
       params: request.params
         .set(WeatherInterceptor.APP_ID, WeatherInterceptor.API_KEY)
-        .set(WeatherInterceptor.UNTIS, Units.CELSIUS)
+        .set(WeatherInterceptor.UNTIS, Units.CELSIUS),
     });
     return next.handle(req);
   }

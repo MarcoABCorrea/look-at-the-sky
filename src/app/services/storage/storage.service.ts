@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Widget } from 'src/app/widget/widget.model';
+import { Widget } from 'src/app/widget/Widget.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
   private static KEY_WEATHER = 'sky_weather';
@@ -11,7 +11,7 @@ export class StorageService {
     localStorage.removeItem(StorageService.KEY_WEATHER);
     localStorage.setItem(
       StorageService.KEY_WEATHER,
-      JSON.stringify(currentWeather)
+      JSON.stringify(currentWeather),
     );
   }
 

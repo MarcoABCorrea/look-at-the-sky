@@ -5,7 +5,9 @@ import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'current-date',
-  templateUrl: './current-date.component.html',
+  template: `<div class="current-date">
+    {{ formattedDate }}
+  </div> `,
 })
 export class CurrentDateComponent implements OnChanges {
   static DATE_FORMAT = 'dddd, MMMM DD, HH:mm:ss';
